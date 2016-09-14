@@ -2,6 +2,7 @@
 from rest_framework import status
 from server.util.tests import TestCase
 
+
 class Test<%= classifiedName %>ViewSet(TestCase):<% if(!addList && !addRetrieve && !addCreate && !addUpdate && !addDestroy){ %>
     pass<% } %><% if(addList){ %>
 

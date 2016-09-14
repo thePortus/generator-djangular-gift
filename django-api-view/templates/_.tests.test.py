@@ -2,6 +2,7 @@
 from rest_framework import status
 from server.util.tests import TestCase
 
+
 class Test<%= classifiedName %>View(TestCase):<% if(!addGet && !addPost && !addPut && !addDelete){ %>
     pass<% } %><% if(addGet){ %>
 
@@ -26,3 +27,4 @@ class Test<%= classifiedName %>View(TestCase):<% if(!addGet && !addPost && !addP
         self.http_delete('/<%= slugifiedName %>/0/',
                          user=None,
                          expected_status=status.HTTP_200_OK)<% } %>
+

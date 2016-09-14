@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-NOTE: __generator-djangularjs__ may automatically modified this file.
+NOTE: __generator-djangular-gift__ may automatically modify this file.
 """
 
 from .<%= underscoredName %> import <%= classifiedName %>View

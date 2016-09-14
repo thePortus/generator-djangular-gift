@@ -1,9 +1,9 @@
 {
-  "name": "generator-djangularjs",
-  "version": "1.0.0",
+  "name": "generator-djangular-gift",
+  "version": "0.1.2",
   "description": "Yeoman Generator for DJANGULARJS",
   "main": "app/index.js",
-  "repository": "nicolaspanel/generator-djangularjs",
+  "repository": "thePortus/generator-djangular-gift",
   "scripts": {
     "test": "mocha"
   },
