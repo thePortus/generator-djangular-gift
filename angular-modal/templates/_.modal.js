@@ -1,21 +1,35 @@
-'use strict';
+// wrapper function
+(function() {
 
-angular.module('<%= slugifiedModuleName %>')
-	.factory('<%= camelizedName %>Modal', function ($modal, staticPath) {
+    'use strict';
 
-        function <%= classifiedName %>Modal(){}
+    angular.module('<%= slugifiedModuleName %>')
+        .factory('<%= camelizedName %>Modal', <%= classifiedName %>
+            Modal)
+        .controller('<%= classifiedName %>ModalController', <%= classifiedName %>
+            ModalController);
 
-        <%= classifiedName %>Modal.open = function (options) {
-            return $modal.open(angular.extend({
-            templateUrl: staticPath('<%= slugifiedModuleName %>/templates/<%= slugifiedModuleName %>.<%= slugifiedName %>.template.html'),
-                controller: '<%= classifiedName %>ModalController',
-                controllerAs: 'ctrl',
-                size: '<%= modalSize %>'
-            }, options || {}));
-        };
+    function <%= classifiedName %>
+    Modal($modal, staticPath) {
 
-        return <%= classifiedName %>Modal;
-    })
-	.controller('<%= classifiedName %>ModalController', function ($scope, $modalInstance) {
-        // TODO: add your custom logic here
-    });
+            <%= classifiedName %>
+            Modal.open = function(options) {
+                return $modal.open(angular.extend({
+                    templateUrl: staticPath('<%= slugifiedModuleName %>/templates/<%= slugifiedModuleName %>.<%= slugifiedName %>.template.html'),
+                    controller: '<%= classifiedName %>ModalController',
+                    controllerAs: 'ctrl',
+                    size: '<%= modalSize %>'
+                }, options || {}));
+            };
+            return <%= classifiedName %>
+            Modal;
+
+        } // end factory function
+
+    function($scope, $modalInstance) {
+
+        // TODO: add modal controller logic here
+
+    } // end controller function
+
+})(); // end wrapper

@@ -8,5 +8,4 @@ node_js:
   - "4"
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-djangularjs' ]; then cd .. && eval "mv $currentfolder generator-djangularjs" && cd generator-djangularjs; fi
-
+  - if [ "$currentfolder" != 'generator-djangular-gift' ]; then cd .. && eval "mv $currentfolder generator-djangular-gift" && cd generator-djangular-gift; fi

@@ -1,192 +1,225 @@
-Scaffolding tools for __[DjangularJS](https://github.com/nicolaspanel/djangularjs)__
+# USF-GIFT
+Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository
+[University of South Florida](http://www.usf.edu/)
 
+### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability.](http://www.usf.edu/pcgs/)
 
-[![npm version](https://badge.fury.io/js/generator-djangularjs.svg)](http://badge.fury.io/js/generator-djangularjs) [![Build Status](https://travis-ci.org/nicolaspanel/generator-djangularjs.png)](https://travis-ci.org/nicolaspanel/generator-djangularjs)
+**OSX/Linux Only**
 
-__STATUS__: stable
+---
 
+## Preface
+Full Stack DjangularJS Yeoman Scaffolding Generator. Yeoman generator optimized for the USF-GIFT project.
 
-## Getting Started
+GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data curation and analysis app allowing scholars from any field relating to food sustainability issues to upload data, link to previously exisiting collections, and perform mass aggregates.
 
-Before you begin make sure you have the [yo scaffolding tool](http://yeoman.io/generators/) installed (as it is part of the Yeoman tool set you might have installed it before). To globally install *yo* you will need to use npm:
+## Project Credits
+* Michael J. Decker, Project Director, mjdecker@usf.edu
+* David J. Thomas, Developer, davidjthomas@usf.edu
+* Howard Kaplan, Developer, howardkaplan@usf.edu
+* Herbert Maschner, Project Partner, maschner@usf.edu
+* Diane Wallman, Project Parter, dianewallman@usf.edu
+* George Philippidis, Project Partner, gphilippidis@usf.edu
+* Qiong Zhang, Project Partner, qiongzhang@usf.edu
 
+---
 
-```
-$ npm install -g yo
-```
+## USF-GIFT Repositories
+* [GIFT Master Repository](https://github.com/thePortus/usf-gift)
+* [GIFT App Repository](https://github.com/thePortus/usf-gift-app)
+* [GIFT Scaffolding Generator Repository](https://github.com/thePortus/generator-djangular-gift)
+* [GIFT Documentation Repository](https://github.com/thePortus/usf-gift-docs)
 
+---
 
-Once you have *yo* installed, you will need to install the DjangularJS generator as well:
+## Contents
+* [Preface](#preface)
+* [Credits](#project-credits)
+* [Installing the Virtual Machine](#installing-the-vm)
+* [Configuring the Virtual Machine](#setting-up-the-vm)
+* [Yo Generator Cheat Sheet](#yo-cheat-sheet)
+* [Stack Components](#stack-components)
+* [Digital Credits](#digital-credits)
+* [License](#license)
 
+---
 
-```
-$ npm install -g generator-djangularjs
-```
+## Installing the VM
 
+** Instructions are for OSX. For Linux, use your system package manager, some steps may vary. **
 
-## Generators
-
-**Note: Generators are to be run from the root directory of your app.**
-
-
-## Application Generator (TODO)
-
-The application generator will help you create a fresh new application in your working folder. To create your application, navigate to a new project folder, and then use *yo* to generate your application:
-
-
-```
-$ mkdir <project-name> && cd <project-name>
-$ yo djangularjs
-```
-
-
-## AngularJS Sub-Generators
-
-### AngularJS Module Sub-Generator
-
-
-```
-$ yo djangularjs:angular-module <module-name>
-```
-
-The sub-generator will ask for more information about your folder structure, and will create the empty new AngularJS module. Now, to fill that new module with your business logic, we provided you with several AngularJS entities sub-generators.
-
-
-
-### AngularJS Route Sub-Generator
-
-The AngularJS route sub-generator will help you create a view, controller and a proper route in your **public/core/core.module.js** file. 
-
-Creating a new AngularJS route will involve executing this command:
-
-
-```
-$ yo djangularjs:angular-route <route-name>
-```
-
-__Note__: ui-router take care of the binding between the view and the controller.
-
-
-### AngularJS Controller Sub-Generator
-
-The AngularJS Controller sub-generator will create a new AngularJS controller in the specified module's **controllers** folder. 
-
-To create a new AngularJS controller run *yo* again by using this command:
-
-
-```
-$ yo djangularjs:angular-controller <controller-name>
+Install host machine dependencies required to launch the virtual machine. Dependencies for the app itself will be installed inside the VM.
+``` shell
+# Brings up dialog to download & install X-Code's minimal command-line tools
+$ xcode-select --install
+# Issue command to d/l and install OSX's package manager, Homebrew
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Homebrew to install NodeJS and Node Package Manager (npm)
+$ brew install node
+# Node Package Manager to install Yeoman Scaffolding tool
+$ sudo npm install -g yo
+# Homebrew Cask to install the VirtualBox VM and Vagrant VM Manager
+$ brew cask install virtualbox vagrant
+# Homebrew to install Ansible provisioning for the VM
+$ brew install ansible
+# Ansible's Galaxy to download pre-defined provisioning roles
+$ ansible-galaxy install -r provisioning/requirements.yml
+# *Optional* Host Machine Install of Yeoman Project Scaffolding Generator
+# $ sudo npm install -g generator-djangular-gift
+# *Optional* Tool to manage VM with icon in system tray
+# $ brew cask install vagrant-bar
 ```
 
+If everything went well, start the VM.
 
-### AngularJS Modal Sub-Generator
-
-The AngularJS Modal sub-generator will create a new AngularJS modal in the specified module's **modals** folder.
- 
- To create a new AngularJS modal run *yo* again by using this command:
-
-
-```
-$ yo djangularjs:angular-modal <modal-name>
+``` bash
+vagrant up
 ```
 
+Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
 
-### AngularJS Service Sub-Generator
+After the machine is started the first time, Ansible will run and ask you for the vault password, which is the same as the user login/pass (vagrant). Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
 
-The AngularJS service sub-generator will create a new AngularJS service in the specified module's **services** folder. 
+---
 
-To create a new AngularJS service you will need to execute this command:
+## Setting Up the VM
 
-
-```
-$ yo djangularjs:angular-service <service-name>
-```
-
-
-### AngularJS Directive Sub-Generator
-
-The AngularJS directive sub-generator will create a new AngularJS directive in the specified module's **directives** folder. 
-
-Creating a new AngularJS directive should already look familiar:
-
-```
-$ yo djangularjs:angular-directive <directive-name>
+Now that the machine is operating, time to connect and configure. The next commands will connect you and take you to the folder inside the VM that is synced with the the project directory on your host machine.
+``` bash
+# Connect to the VM from your host machine through ssh as user dev0
+@host $ vagrant ssh dev0
+# Change to the /vagrant directory (which is the synced repo folder)
+@dev0 $ cd /vagrant
+# Activate development environment
+@dev0 $ source bin/activate
 ```
 
-
-### AngularJS Filter Sub-Generator
-
-The AngularJS filter sub-generator will create a new AngularJS filter in a specified module's **filters** folder. 
-
-```
-$ yo djangularjs:angular-filter <filter-name>
-```
-
-
-## Django Sub-Generators
-
-### Django Module Sub-Generator
-
-```
-$ yo djangularjs:django-module <module-name>
+Next, install your server and client-side dependencies with npm and bower.
+``` bash
+# Install server-side dependencies on vm with npm
+@dev0 $ npm install
+# Install client-side dependencies on vm with bower
+@dev0 $ bower install
 ```
 
-
-### Django Template Tag Sub-Generator
-
-```
-$ yo djangularjs:django-templatetag <templatetag-name>
-```
-
-See [Django template tags](https://docs.djangoproject.com/en/1.8/howto/custom-template-tags/#writing-custom-template-tags)
-
-
-### Django Filter Sub-Generator
-
-```
-$ yo djangularjs:django-filter <filter-name>
+Time to set up the PostgreSQL server. You will temporarily switch into the 'postgres' user mode, create the database and then enter into its shell.
+``` bash
+# Sudo as postgres user
+@dev0 $ sudo -i -u postgres
+# Create development database 'gift_dev' as postgres
+@postgres $ createdb gift_dev
+# Launch into the PostgreSQL shell
+@postgres $ psql
 ```
 
-See [Django filters](https://docs.djangoproject.com/en/1.8/howto/custom-template-tags/#writing-custom-template-filters)
-
-
-### Django APIView generator
-
-```
-$ yo djangularjs:django-api-view <api-view-name>
-```
-
-See [Django Rest Framework APIViews](http://www.django-rest-framework.org/api-guide/views/) for more information
-
-
-### Django ViewSet generator
-
-```
-$ yo djangularjs:django-viewset <viewset-name>
+Now you are inside the postgres shell. Lets create our apps credentials and grant it privileges.
+``` sql
+# Create new credentials
+@ psql $ CREATE ROLE vagrant WITH LOGIN PASSWORD 'vagrant';
+# Give new user 'vagrant' all priveleges on the development db
+@ psql $ GRANT ALL PRIVILEGES ON DATABASE gift_dev TO vagrant;
+# Change create of 'gift_dev' to 'vagrant'
+@ psql $ ALTER USER vagrant CREATEDB;
+# Quit the PostgreSQL shell and then exit out of postgres
+@ psql $ \q
+@ postgres $ exit
+# You should now be back inside the ssh of your VM, as dev0
 ```
 
-See [Django Rest Framework ViewSets](http://www.django-rest-framework.org/api-guide/viewsets/) for more information
-
-
-### Django Serializer generator
-
+Now to install Python dependencies and migrate the initial models.
+``` bash
+# Use pip to read and d/l project module dependencies
+@dev0 $ pip install -r requirements/dev.txt
+# Migrate over the default models (auth, etc...)
+@dev0 $ python manage.py migrate
 ```
-$ yo djangularjs:django-serializer <serializer-name>
+
+If everything has worked, run testing, build css, and start the server.
+``` bash
+# Grunt task-runner performs automated testing with karma/protractor
+@dev0 $ grunt test
+# Convert sass to css
+@dev0 $ grunt sass translate
+# Compile static files and start the server
+@dev0 $ grunt serve
 ```
 
-See [Django Rest Framework Serializers](http://www.django-rest-framework.org/api-guide/serializers/) for more information
- 
- 
-## Credits
+That's it! You should (hopefully) be able to go to your [localhost (http://localhost:9000)](http://localhost:9000) on your browser to see the splash page.
 
-Inspired from [MEAN.JS](http://meanjs.org/)
+You can exit the VM on the terminal by typing `exit`. To shut the VM down and free memory, exit the VM, and then while in the project directory, type either of the following.
+``` bash
+# Shuts down the VM (execute from host machine, in project directory)
+@host $ vagrant halt
+# Once you halt, suspend frees up system memory (use vagrant up to restart)
+@host $ vagrant suspend
+# After you halt and/or suspend the VM, you can free up space by removing it
+@host $ vagrant destroy
+```
 
+---
 
-# License
+## Yo Cheat-Sheet
 
+**AngularJS**
+```
+yo djangular-gift:angular-controller NAME
+yo djangular-gift:angular-directive NAME
+yo djangular-gift:angular-filter NAME
+yo djangular-gift:angular-modal NAME
+yo djangular-gift:angular-module NAME
+yo djangular-gift:angular-route NAME
+yo djangular-gift:angular-service NAME
+```
+
+**Django**
+```
+yo djangular-gift:django-api-view NAME
+yo djangular-gift:django-filter NAME
+yo djangular-gift:django-module NAME
+yo djangular-gift:django-serializer NAME
+yo djangular-gift:django-templatetag NAME
+yo djangular-gift:django-viewset NAME
+```
+
+---
+
+## Stack Components
++ Virtual Machine: VirtualBox/Vagrant
++ Provisioning: Ansible
++ OS: Ubuntu/Trusty64
++ Backend:
+    * NodeJS
+    * Django
+        * Django Rest Framework
+        * Django Compressor
+        * Django Rest Pandas
++ Frontend:
+    * AngularJS
+        * AngularUI
+        * Angular-Translate
+        * AngularMaterial
+    * Bootstrap
+    * Sass
+    * Moment.js
++ Scaffolding/Automation/Testing:
+    * Yeoman
+    * Grunt
+    * Karma
+    * Protractor
+
+---
+
+## Digital Credits
+[Based on the Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) [and DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane.
+
+His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
+
+---
+
+## License
 The MIT License (MIT)
 
-Copyright (c) 2015 Nicolas Panel
+Copyright (c) 2016 David J. Thomas, thePortus.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -205,4 +238,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-

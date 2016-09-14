@@ -11,7 +11,7 @@ var fs = require('fs');
 
 function runGenerator(generatorType, name, promptAnswers, done) {
     helpers
-        .run(path.resolve(__dirname, '../' + generatorType), {tmpdir: false})
+        .run(path.resolve(__dirname, '../' + generatorType), { tmpdir: false })
         .withArguments([name])
         .withPrompts(promptAnswers)
         .withOptions({
@@ -29,14 +29,14 @@ describe('DjangularJS generator', function() {
 
     afterEach(temp.cleanup);
 
-    beforeEach(function (done) {
+    beforeEach(function(done) {
         workspace = temp.mkdirSync();
         helpers.testDirectory(workspace, done);
     });
 
-    describe('djangularjs:app ', function(){
+    describe('djangular-gift:app ', function() {
         beforeEach(function(done) {
-            runGenerator('app', '', {appName: 'my app'}, done);
+            runGenerator('app', '', { appName: 'my app' }, done);
         });
 
         it('should create expected files', function() {
@@ -70,7 +70,7 @@ describe('DjangularJS generator', function() {
             ]);
         });
 
-        describe('djangularjs:angular-module', function() {
+        describe('djangular-gift:angular-module', function() {
 
             var moduleName = 'my-module';
 
@@ -86,10 +86,10 @@ describe('DjangularJS generator', function() {
                 ]);
             });
 
-            describe('djangularjs:angular-controller generator ', function() {
+            describe('djangular-gift:angular-controller generator ', function() {
                 var ctlrName = 'my-ctrl';
                 beforeEach(function(done) {
-                    runGenerator('angular-controller', ctlrName, {moduleName: moduleName}, done);
+                    runGenerator('angular-controller', ctlrName, { moduleName: moduleName }, done);
                 });
 
                 it('should create expected files', function() {
@@ -101,12 +101,12 @@ describe('DjangularJS generator', function() {
 
             });
 
-            describe('djangularjs:angular-directive generator ', function() {
+            describe('djangular-gift:angular-directive generator ', function() {
                 var directiveName = 'my-directive';
 
                 describe('without template', function() {
                     beforeEach(function(done) {
-                        runGenerator('angular-directive', directiveName, {moduleName: moduleName, haveTemplate: false}, done);
+                        runGenerator('angular-directive', directiveName, { moduleName: moduleName, haveTemplate: false }, done);
                     });
 
                     it('should create expected files', function() {
@@ -119,7 +119,7 @@ describe('DjangularJS generator', function() {
 
                 describe('with template', function() {
                     beforeEach(function(done) {
-                        runGenerator('angular-directive', directiveName, {moduleName: moduleName, haveTemplate: true}, done);
+                        runGenerator('angular-directive', directiveName, { moduleName: moduleName, haveTemplate: true }, done);
                     });
 
                     it('should create expected files', function() {
@@ -133,10 +133,10 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('djangularjs:angular-filter generator', function() {
+            describe('djangular-gift:angular-filter generator', function() {
                 var filterName = 'my-filter';
                 beforeEach(function(done) {
-                    runGenerator('angular-filter', filterName, {moduleName: moduleName}, done);
+                    runGenerator('angular-filter', filterName, { moduleName: moduleName }, done);
                 });
 
                 it('should create expected files', function() {
@@ -147,11 +147,11 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('djangularjs:angular-modal generator', function() {
+            describe('djangular-gift:angular-modal generator', function() {
                 var modalName = 'my-modal';
                 describe('generation', function() {
                     beforeEach(function(done) {
-                        runGenerator('angular-modal', modalName, {moduleName: moduleName}, done);
+                        runGenerator('angular-modal', modalName, { moduleName: moduleName }, done);
                     });
 
                     it('should create expected files', function() {
@@ -165,10 +165,10 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('djangularjs:angular-route generator', function() {
+            describe('djangular-gift:angular-route generator', function() {
                 var routeName = 'my-route';
                 beforeEach(function(done) {
-                    runGenerator('angular-route', routeName, {moduleName: moduleName}, done);
+                    runGenerator('angular-route', routeName, { moduleName: moduleName }, done);
                 });
 
                 it('should create expected files', function() {
@@ -180,17 +180,17 @@ describe('DjangularJS generator', function() {
                     ]);
                 });
 
-                it('should have include ref to view styles', function () {
+                it('should have include ref to view styles', function() {
                     expect(read(format("public/{0}/styles/{0}.style.scss", moduleName)))
                         .to.contain('"my-route.view"');
                 });
 
             });
 
-            describe('djangularjs:angular-service generator', function() {
-                var serviceName= 'my-service';
+            describe('djangular-gift:angular-service generator', function() {
+                var serviceName = 'my-service';
                 beforeEach(function(done) {
-                    runGenerator('angular-service', serviceName, {moduleName: moduleName}, done);
+                    runGenerator('angular-service', serviceName, { moduleName: moduleName }, done);
                 });
 
                 it('should create expected files', function() {
@@ -203,12 +203,12 @@ describe('DjangularJS generator', function() {
 
         });
 
-        describe('djangularjs:django-module', function () {
+        describe('djangular-gift:django-module', function() {
             var moduleName = 'my_module';
 
-            describe('without any module', function () {
+            describe('without any module', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: [], addToInstalledApps: false}, done);
+                    runGenerator('django-module', moduleName, { modules: [], addToInstalledApps: false }, done);
                 });
 
                 it('should create expected files', function() {
@@ -217,16 +217,16 @@ describe('DjangularJS generator', function() {
                     ]);
                 });
 
-                it('should NOT have added new module into INSTALLED_APPS', function () {
+                it('should NOT have added new module into INSTALLED_APPS', function() {
                     expect(read('server/settings/base.py'))
                         .to.not.contain('\'server.my_module\',\n');
                 });
 
-                describe('djangularjs:django-api-view', function () {
+                describe('djangular-gift:django-api-view', function() {
                     var viewName = 'my_view';
 
                     beforeEach(function(done) {
-                        runGenerator('django-api-view', viewName, {moduleName: moduleName, methods: ['addGet', 'addPost', 'addPut', 'addDelete']}, done);
+                        runGenerator('django-api-view', viewName, { moduleName: moduleName, methods: ['addGet', 'addPost', 'addPut', 'addDelete'] }, done);
                     });
 
                     it('should create expected files', function() {
@@ -237,18 +237,18 @@ describe('DjangularJS generator', function() {
                         ]);
                     });
 
-                    it('should import view', function () {
+                    it('should import view', function() {
                         expect(read(format('server/{0}/views/__init__.py', moduleName)))
                             .to.contain('from .my_view import MyViewView');
                     });
 
-                    it('should include module urls into server/urls.py', function () {
+                    it('should include module urls into server/urls.py', function() {
                         expect(read('server/urls.py'))
                             .to.contain(format('url(r\'^\', include(\'server.{0}.urls\')),', moduleName));
                     });
                 });
 
-                describe('djangularjs:django-viewset', function () {
+                describe('djangular-gift:django-viewset', function() {
                     var viewsetName = 'to_to';
 
                     beforeEach(function(done) {
@@ -268,32 +268,32 @@ describe('DjangularJS generator', function() {
                         ]);
                     });
 
-                    it('should import view', function () {
+                    it('should import view', function() {
                         expect(read(format('server/{0}/views/__init__.py', moduleName)))
                             .to.contain('from .to_to import ToToViewSet');
                     });
 
-                    it('should include module urls into server/urls.py', function () {
+                    it('should include module urls into server/urls.py', function() {
                         expect(read('server/urls.py'))
                             .to.contain(format('url(r\'^\', include(\'server.{0}.urls\')),', moduleName));
                     });
 
-                    it('should register the viewset', function () {
+                    it('should register the viewset', function() {
                         expect(read(format('server/{0}/urls.py', moduleName)))
                             .to.contain('router.register(r\'totos\', views.ToToViewSet, base_name=\'to-to\')');
                     });
 
-                    it('should customize the lookup field', function () {
+                    it('should customize the lookup field', function() {
                         expect(read(format("server/{0}/views/{1}.py", moduleName, viewsetName)))
                             .to.contain('lookup_field = \'my_pk\'');
                     });
                 });
 
-                describe('djangularjs:django-templatetag', function () {
+                describe('djangular-gift:django-templatetag', function() {
                     var templateTagName = 'my_template_tag';
 
                     beforeEach(function(done) {
-                        runGenerator('django-templatetag', templateTagName, {moduleName: moduleName}, done);
+                        runGenerator('django-templatetag', templateTagName, { moduleName: moduleName }, done);
                     });
 
                     it('should create expected files', function() {
@@ -306,11 +306,11 @@ describe('DjangularJS generator', function() {
 
                 });
 
-                describe('djangularjs:django-filter', function () {
+                describe('djangular-gift:django-filter', function() {
                     var filterName = 'my_filter';
 
                     beforeEach(function(done) {
-                        runGenerator('django-filter', filterName, {moduleName: moduleName}, done);
+                        runGenerator('django-filter', filterName, { moduleName: moduleName }, done);
                     });
 
                     it('should create expected files', function() {
@@ -323,11 +323,11 @@ describe('DjangularJS generator', function() {
 
                 });
 
-                describe('djangularjs:django-serializer', function () {
+                describe('djangular-gift:django-serializer', function() {
                     var filterName = 'my_serializer';
 
                     beforeEach(function(done) {
-                        runGenerator('django-serializer', filterName, {moduleName: moduleName, haveTest: true}, done);
+                        runGenerator('django-serializer', filterName, { moduleName: moduleName, haveTest: true }, done);
                     });
 
                     it('should create expected files', function() {
@@ -341,9 +341,9 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('with serializers', function () {
+            describe('with serializers', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addSerializers']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addSerializers'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -353,11 +353,11 @@ describe('DjangularJS generator', function() {
                     ]);
                 });
 
-                describe('djangularjs:django-serializer', function () {
+                describe('djangular-gift:django-serializer', function() {
                     var serializerName = 'my_serializer';
 
                     beforeEach(function(done) {
-                        runGenerator('django-serializer', serializerName, {moduleName: moduleName, haveTest: false}, done);
+                        runGenerator('django-serializer', serializerName, { moduleName: moduleName, haveTest: false }, done);
                     });
 
                     it('should create expected files', function() {
@@ -366,7 +366,7 @@ describe('DjangularJS generator', function() {
                         ]);
                     });
 
-                    it('should have added the new serializer into the serializers module', function () {
+                    it('should have added the new serializer into the serializers module', function() {
                         expect(read(format("server/{0}/serializers/__init__.py", moduleName)))
                             .to.contain('from .my_serializer import MySerializerSerializer');
                     });
@@ -374,9 +374,9 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('with templatetags', function () {
+            describe('with templatetags', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addTemplatetags']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addTemplatetags'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -386,16 +386,16 @@ describe('DjangularJS generator', function() {
                     ]);
                 });
 
-                it('should have added new module into INSTALLED_APPS', function () {
+                it('should have added new module into INSTALLED_APPS', function() {
                     expect(read('server/settings/base.py'))
                         .to.contain('\'server.my_module\',\n');
                 });
 
-                describe('djangularjs:django-templatetag', function () {
+                describe('djangular-gift:django-templatetag', function() {
                     var templateTagName = 'my_template_tag';
 
                     beforeEach(function(done) {
-                        runGenerator('django-templatetag', templateTagName, {moduleName: moduleName}, done);
+                        runGenerator('django-templatetag', templateTagName, { moduleName: moduleName }, done);
                     });
 
                     it('should create expected files', function() {
@@ -407,11 +407,11 @@ describe('DjangularJS generator', function() {
                 });
 
 
-                describe('djangularjs:django-filter', function () {
+                describe('djangular-gift:django-filter', function() {
                     var filterName = 'my_filter';
 
                     beforeEach(function(done) {
-                        runGenerator('django-filter', filterName, {moduleName: moduleName}, done);
+                        runGenerator('django-filter', filterName, { moduleName: moduleName }, done);
                     });
 
                     it('should create expected files', function() {
@@ -424,9 +424,9 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('with tests', function () {
+            describe('with tests', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addTests']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addTests'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -437,9 +437,9 @@ describe('DjangularJS generator', function() {
                 });
             });
 
-            describe('with urls', function () {
+            describe('with urls', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addUrls']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addUrls'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -449,15 +449,15 @@ describe('DjangularJS generator', function() {
                         format("server/{0}/urls.py", moduleName)
                     ]);
                 });
-                it('should have updated server/urls.py files', function () {
+                it('should have updated server/urls.py files', function() {
                     expect(read('server/urls.py')).to.contain('url(r\'^\', include(\'server.my_module.urls\')),\n');
                 });
 
             });
 
-            describe('with admin.py and models.py', function () {
+            describe('with admin.py and models.py', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addModels']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addModels'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -470,9 +470,9 @@ describe('DjangularJS generator', function() {
 
             });
 
-            describe('with management stuffs', function () {
+            describe('with management stuffs', function() {
                 beforeEach(function(done) {
-                    runGenerator('django-module', moduleName, {modules: ['addManagement']}, done);
+                    runGenerator('django-module', moduleName, { modules: ['addManagement'] }, done);
                 });
 
                 it('should create expected files', function() {
@@ -487,4 +487,3 @@ describe('DjangularJS generator', function() {
         });
     });
 });
-

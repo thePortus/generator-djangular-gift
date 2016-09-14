@@ -6,6 +6,7 @@ from django.test.utils import override_settings
 
 logger = logging.getLogger(__name__)
 
+
 class Test<%= classifiedName %>Temlatetag(TestCase):
     def setUp(self):
         self.context = {}

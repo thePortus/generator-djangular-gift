@@ -1,8 +1,19 @@
-'use strict';
+// wrapper function
+(function() {
 
-angular.module('<%= slugifiedModuleName %>').filter('<%= camelizedName %>',
-	function() {
-		return function(input) {
-			// TODO: add your logic here
-		};
-	});
+    'use strict';
+
+    angular.module('<%= slugifiedModuleName %>')
+        .filter('<%= camelizedName %>', <%= camelizedName %>);
+
+    function <%= camelizedName %> () {
+
+        return function(input) {
+
+            // TODO: add filter logic here
+
+        }; // end filter logic
+
+    } // end filter function
+
+})(); // end wrapper
