@@ -1,6 +1,6 @@
 {
   "name": "generator-djangular-gift",
-  "version": "0.1.3-0",
+  "version": "0.1.6-0",
   "description": "Yeoman Generator for DJANGULARJS",
   "main": "app/index.js",
   "repository": "thePortus/generator-djangular-gift",
