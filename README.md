@@ -1,40 +1,45 @@
-# USF-GIFT
-Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository
-[University of South Florida](http://www.usf.edu/)
+# GENERATOR-DJANGULAR-GIFT
 
-### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability.](http://www.usf.edu/pcgs/)
+Full Stack DjangularJS Yeoman Scaffolding Generator. Yeoman generator optimized for the USF-GIFT project.
+
+Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
+[University of South Florida](http://www.usf.edu/).
+
+### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).
 
 **OSX/Linux Only**
 
 ---
 
 ## Preface
-Full Stack DjangularJS Yeoman Scaffolding Generator. Yeoman generator optimized for the USF-GIFT project.
 
 GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data curation and analysis app allowing scholars from any field relating to food sustainability issues to upload data, link to previously exisiting collections, and perform mass aggregates.
 
-## Project Credits
-* Michael J. Decker, Project Director, mjdecker@usf.edu
-* David J. Thomas, Developer, davidjthomas@usf.edu
-* Howard Kaplan, Developer, howardkaplan@usf.edu
-* Herbert Maschner, Project Partner, maschner@usf.edu
-* Diane Wallman, Project Parter, dianewallman@usf.edu
-* George Philippidis, Project Partner, gphilippidis@usf.edu
-* Qiong Zhang, Project Partner, qiongzhang@usf.edu
-
 ---
 
-## USF-GIFT Repositories
-* [GIFT Master Repository](https://github.com/thePortus/usf-gift)
-* [GIFT App Repository](https://github.com/thePortus/usf-gift-app)
-* [GIFT Scaffolding Generator Repository](https://github.com/thePortus/generator-djangular-gift)
-* [GIFT Documentation Repository](https://github.com/thePortus/usf-gift-docs)
+## Credits
+
+**Project Credits**
+* Michael J. Decker, Project Director
+* David J. Thomas, Developer
+* Howard Kaplan, Developer
+* Herbert Maschner, Project Partner
+* Diane Wallman, Project Parter
+* George Philippidis, Project Partner
+* Qiong Zhang, Project Partner
+
+**Digital Credits**
+[Based on the Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) [and DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane.
+
+His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
 
 ---
 
 ## Contents
 * [Preface](#preface)
 * [Credits](#project-credits)
+* [Pre-Configuration](#pre-configuration)
+* [Generating the Scaffolding](#generating-the-scaffolding)
 * [Installing the Virtual Machine](#installing-the-vm)
 * [Configuring the Virtual Machine](#setting-up-the-vm)
 * [Yo Generator Cheat Sheet](#yo-cheat-sheet)
@@ -44,36 +49,59 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 
 ---
 
-## Installing the VM
+## Pre-Configuration
 
 ** Instructions are for OSX. For Linux, use your system package manager, some steps may vary. **
 
-Install host machine dependencies required to launch the virtual machine. Dependencies for the app itself will be installed inside the VM.
+**OSX Pre-Configuration**
 ``` shell
 # Brings up dialog to download & install X-Code's minimal command-line tools
-$ xcode-select --install
+@host $ xcode-select --install
 # Issue command to d/l and install OSX's package manager, Homebrew
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+@host $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # Homebrew to install NodeJS and Node Package Manager (npm)
-$ brew install node
-# Node Package Manager to install Yeoman Scaffolding tool
-$ sudo npm install -g yo
+@host $ brew install node
 # Homebrew Cask to install the VirtualBox VM and Vagrant VM Manager
-$ brew cask install virtualbox vagrant
+@host $ brew cask install virtualbox vagrant
 # Homebrew to install Ansible provisioning for the VM
-$ brew install ansible
-# Ansible's Galaxy to download pre-defined provisioning roles
-$ ansible-galaxy install -r provisioning/requirements.yml
-# *Optional* Host Machine Install of Yeoman Project Scaffolding Generator
-# $ sudo npm install -g generator-djangular-gift
-# *Optional* Tool to manage VM with icon in system tray
-# $ brew cask install vagrant-bar
+@host $ brew install ansible
 ```
+
+**Ubuntu Pre-Configuation**
+```
+# Install legacy nodejs (for ubuntu) and npm
+@host $ sudo apt-get install nodejs-legacy npm
+# If the command below fails, download virtualbox and vagrant from the web
+@host $ sudo apt-get install virtualbox vagrant
+@host $ sudo apt-get install ansible
+```
+
+For other systems, use your system package manager.
+
+## Generating the Scaffolding
+
+**All systems**
+``` shell
+# Node Package Manager to install Yeoman Scaffolding tool
+@host $ sudo npm install -g yo generator-djangular-gift
+# Ansible's Galaxy to download pre-defined provisioning roles
+@host $ ansible-galaxy install -r provisioning/requirements.yml
+```
+
+Create a project directory, navigate inside, and then...
+``` shell
+# Launches the djangular-gift generator
+@host $ yo djangular-gift
+```
+
+When prompted, enter the desired name of your project. You should see an output listing all the files created. Now that we have the dependencies on the host system installed, we can launch the virtual machine using the configuration files created by the generator.
+
+## Installing the VM
 
 If everything went well, start the VM.
 
-``` bash
-vagrant up
+``` shell
+@host $ vagrant up
 ```
 
 Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
@@ -198,6 +226,7 @@ yo djangular-gift:django-viewset NAME
         * AngularUI
         * Angular-Translate
         * AngularMaterial
+        * MaterialDesignIcons
     * Bootstrap
     * Sass
     * Moment.js
@@ -206,13 +235,6 @@ yo djangular-gift:django-viewset NAME
     * Grunt
     * Karma
     * Protractor
-
----
-
-## Digital Credits
-[Based on the Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) [and DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane.
-
-His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
 
 ---
 
