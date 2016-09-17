@@ -90,7 +90,7 @@ Navigate to where you want to create the project directory...
 
 Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
 
-After the machine is started the first time, Ansible will run and ask you for the vault password, which is the same as the user login/pass (vagrant). Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
+Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
 
 ---
 
