@@ -13,18 +13,16 @@
             scope: {
                 // foo: '=',
                 // bar: '=',
-            }
-            controller: <%= camelizedName %>
-            Controller
-            controllerAs: 'ctrl',
+            },
+            controller: <%= camelizedName %>Controller,
+            controllerAs: 'vm',
             bindToController: true // b/c isolated scope
-        }
+        };
         return directive;
     }
 
     /* CONTROLLER FUNCTION */
-    function <%= camelizedName %>
-    Controller() {
+    function <%= camelizedName %>Controller() {
             /* jshint validthis: true */
             var vm = this;
 
