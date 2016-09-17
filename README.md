@@ -17,6 +17,7 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 
 ---
 
+<<<<<<< HEAD
 ## Credits
 
 **Project Credits**
@@ -41,6 +42,12 @@ His excellent work I have only modified in small part in order to conform with [
 * [Pre-Configuration](#pre-configuration)
 * [Generating the Scaffolding](#generating-the-scaffolding)
 * [Installing the Virtual Machine](#installing-the-vm)
+=======
+## Contents
+* [Preface](#preface)
+* [Credits](#project-credits)
+* [Installing the Scaffolding](#installing-the-scaffolding)
+>>>>>>> master
 * [Configuring the Virtual Machine](#setting-up-the-vm)
 * [Yo Generator Cheat Sheet](#yo-cheat-sheet)
 * [Stack Components](#stack-components)
@@ -49,21 +56,32 @@ His excellent work I have only modified in small part in order to conform with [
 
 ---
 
+<<<<<<< HEAD
 ## Pre-Configuration
 
 ** Instructions are for OSX. For Linux, use your system package manager, some steps may vary. **
 
 **OSX Pre-Configuration**
+=======
+## Installing the Scaffolding
+
+OSX Specific Pre-Installation
+>>>>>>> master
 ``` shell
 # Brings up dialog to download & install X-Code's minimal command-line tools
 @host $ xcode-select --install
 # Issue command to d/l and install OSX's package manager, Homebrew
 @host $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # Homebrew to install NodeJS and Node Package Manager (npm)
+<<<<<<< HEAD
 @host $ brew install node
+=======
+$ brew install node
+>>>>>>> master
 # Homebrew Cask to install the VirtualBox VM and Vagrant VM Manager
 @host $ brew cask install virtualbox vagrant
 # Homebrew to install Ansible provisioning for the VM
+<<<<<<< HEAD
 @host $ brew install ansible
 ```
 
@@ -102,6 +120,36 @@ If everything went well, start the VM.
 
 ``` shell
 @host $ vagrant up
+=======
+$ brew install ansible
+```
+
+For Linux systems, use your system's package manager, or some other means (see respective websites), to install [NodeJS/npm](https://nodejs.org/), [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](https://vagrantup.com/), and [Ansible](https://www.ansible.com/).
+
+First, we need to configure the generator and automated provisioning
+``` shell
+# Node Package Manager to install Yeoman Scaffolding tool
+@host $ sudo npm install -g yo
+# Ansible's Galaxy to download pre-defined provisioning roles
+@host $ ansible-galaxy install -r provisioning/requirements.yml
+# Host Machine Install of Yeoman Project Scaffolding Generator
+@host $ sudo npm install -g generator-djangular-gift
+# *Optional* Tool to manage VM with icon in system tray
+# $ brew cask install vagrant-bar
+```
+
+Let's generate the bare app scaffold files
+``` shell
+# Create the directory for your app and navigate inside
+@host $ mkdir your_app && cd "$_"
+# Run the yo generator, when prompted, confirm or set the app name
+@host $ yo djangular-gift
+```
+
+If everything went well, start the VM.
+``` bash
+vagrant up
+>>>>>>> master
 ```
 
 Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
