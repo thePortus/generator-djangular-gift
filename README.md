@@ -1,6 +1,4 @@
-# GENERATOR-DJANGULAR-GIFT
-
-Full Stack DjangularJS Yeoman Scaffolding Generator. Yeoman generator optimized for the USF-GIFT project.
+# USF-GIFT
 
 Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
 [University of South Florida](http://www.usf.edu/).
@@ -28,22 +26,24 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 * George Philippidis, Project Partner
 * Qiong Zhang, Project Partner
 
-**Special Digital Credits**
-
-This generator and project is based on the [Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) and [DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane. His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
-
 ---
 
 ## Contents
 * [Preface](#preface)
 * [Credits](#project-credits)
 * [Pre-Configuration](#pre-configuration)
-* [Generating the Scaffolding](#generating-the-scaffolding)
 * [Configuring the Virtual Machine](#setting-up-the-vm)
 * [Yo Generator Cheat Sheet](#yo-cheat-sheet)
 * [Stack Components](#stack-components)
 * [Digital Credits](#digital-credits)
 * [License](#license)
+
+---
+
+**NOTE ON COMMANDS BELOW**
+* @host $ indicates a command executed on your physical machine
+* @dev0 $ indicates a command executed on the VM
+* @dev0 $ indicates a command executed on the VM as user postgres
 
 ---
 
@@ -72,10 +72,6 @@ This generator and project is based on the [Full Stack DjangularJS Project](http
 @host $ sudo apt-get install ansible
 ```
 
-For other systems, use your system package manager.
-
-## Generating the Scaffolding
-
 **All systems**
 ``` shell
 # Node Package Manager to install Yeoman Scaffolding tool
@@ -84,29 +80,24 @@ For other systems, use your system package manager.
 @host $ ansible-galaxy install -r provisioning/requirements.yml
 ```
 
-Create a project directory, navigate inside, and then...
+Navigate to where you want to create the project directory...
 ``` shell
-# Launches the djangular-gift generator
-@host $ yo djangular-gift
-```
-
-When prompted, enter the desired name of your project. You should see an output listing all the files created. Now that we have the dependencies on the host system installed, we can launch the virtual machine using the configuration files created by the generator.
-
----
-
-## Setting Up the VM
-
-Make sure you are inside the generated project directory, then launch the VM.
-``` shell
-vagrant up
+# Clones the Github repository to your local machine
+@host $ git clone https://github.com/thePortus/usf-gift
+@host $ cd usf-gift
+@host $ vagrant up
 ```
 
 Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
 
 After the machine is started the first time, Ansible will run and ask you for the vault password, which is the same as the user login/pass (vagrant). Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
 
+---
+
+## Setting Up the VM
+
 Now that the machine is operating, time to connect and configure. The next commands will connect you and take you to the folder inside the VM that is synced with the the project directory on your host machine.
-``` bash
+``` shell
 # Connect to the VM from your host machine through ssh as user dev0
 @host $ vagrant ssh dev0
 # Change to the /vagrant directory (which is the synced repo folder)
@@ -116,15 +107,13 @@ Now that the machine is operating, time to connect and configure. The next comma
 ```
 
 Next, install your server and client-side dependencies with npm and bower.
-``` bash
-# Install server-side dependencies on vm with npm
+``` shell
+# Install server-side dependencies on vm with npm (include bower dependencies)
 @dev0 $ npm install
-# Install client-side dependencies on vm with bower
-@dev0 $ bower install
 ```
 
 Time to set up the PostgreSQL server. You will temporarily switch into the 'postgres' user mode, create the database and then enter into its shell.
-``` bash
+``` shell
 # Sudo as postgres user
 @dev0 $ sudo -i -u postgres
 # Create development database 'gift_dev' as postgres
@@ -148,7 +137,7 @@ Now you are inside the postgres shell. Lets create our apps credentials and gran
 ```
 
 Now to install Python dependencies and migrate the initial models.
-``` bash
+``` shell
 # Use pip to read and d/l project module dependencies
 @dev0 $ pip install -r requirements/dev.txt
 # Migrate over the default models (auth, etc...)
@@ -156,7 +145,7 @@ Now to install Python dependencies and migrate the initial models.
 ```
 
 If everything has worked, run testing, build css, and start the server.
-``` bash
+``` shell
 # Grunt task-runner performs automated testing with karma/protractor
 @dev0 $ grunt test
 # Convert sass to css
@@ -168,7 +157,7 @@ If everything has worked, run testing, build css, and start the server.
 That's it! You should (hopefully) be able to go to your [localhost (http://localhost:9000)](http://localhost:9000) on your browser to see the splash page.
 
 You can exit the VM on the terminal by typing `exit`. To shut the VM down and free memory, exit the VM, and then while in the project directory, type either of the following.
-``` bash
+``` shell
 # Shuts down the VM (execute from host machine, in project directory)
 @host $ vagrant halt
 # Once you halt, suspend frees up system memory (use vagrant up to restart)
