@@ -28,10 +28,9 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 * George Philippidis, Project Partner
 * Qiong Zhang, Project Partner
 
-**Digital Credits**
-[Based on the Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) [and DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane.
+**Special Digital Credits**
 
-His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
+This generator and project is based on the [Full Stack DjangularJS Project](https://github.com/nicolaspanel/djangularjs) and [DjangularJS Yo Generator](https://www.npmjs.com/package/generator-djangularjs) by Nicolas Pane. His excellent work I have only modified in small part in order to conform with [John Papa's AngularJS Style Guide.](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md). I have also added provisioning for a postgres server as well as a few small project-driven needs.
 
 ---
 
@@ -40,7 +39,6 @@ His excellent work I have only modified in small part in order to conform with [
 * [Credits](#project-credits)
 * [Pre-Configuration](#pre-configuration)
 * [Generating the Scaffolding](#generating-the-scaffolding)
-* [Installing the Virtual Machine](#installing-the-vm)
 * [Configuring the Virtual Machine](#setting-up-the-vm)
 * [Yo Generator Cheat Sheet](#yo-cheat-sheet)
 * [Stack Components](#stack-components)
@@ -94,17 +92,11 @@ Create a project directory, navigate inside, and then...
 
 When prompted, enter the desired name of your project. You should see an output listing all the files created. Now that we have the dependencies on the host system installed, we can launch the virtual machine using the configuration files created by the generator.
 
-## Installing the VM
+---
 
-Let's generate the bare app scaffold files
-``` shell
-# Create the directory for your app and navigate inside
-@host $ mkdir your_app && cd "$_"
-# Run the yo generator, when prompted, confirm or set the app name
-@host $ yo djangular-gift
-```
+## Setting Up the VM
 
-If everything went well, start the VM.
+Make sure you are inside the generated project directory, then launch the VM.
 ``` shell
 vagrant up
 ```
@@ -112,10 +104,6 @@ vagrant up
 Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
 
 After the machine is started the first time, Ansible will run and ask you for the vault password, which is the same as the user login/pass (vagrant). Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
-
----
-
-## Setting Up the VM
 
 Now that the machine is operating, time to connect and configure. The next commands will connect you and take you to the folder inside the VM that is synced with the the project directory on your host machine.
 ``` bash
