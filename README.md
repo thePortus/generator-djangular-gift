@@ -1,10 +1,9 @@
 # generator-djangular-gift
----
 
 Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
 [University of South Florida](http://www.usf.edu/).
 
-### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).
+*[This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).*
 
 ---
 
@@ -90,14 +89,10 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 ``` shell
 # Node Package Manager to install Yeoman Scaffolding tool
 @host $ sudo npm install -g yo generator-djangular-gift
+# Run the generator inside the directory where you want the project
+@host $ yo djangular-gift
 # Ansible's Galaxy to download pre-defined provisioning roles
 @host $ ansible-galaxy install -r provisioning/requirements.yml
-```
-
-Navigate inside the directory where you want to create your project...
-``` shell
-# Run the Djangular-Gift Yeoman generator
-@host $ yo djangular-gift
 ```
 
 When asked for the ansible-vault key, enter `vagrant`. This will allow provisioning.
