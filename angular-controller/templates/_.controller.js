@@ -5,21 +5,19 @@
 
     /* ANGULAR CONTROLLER DECLARATION */
     angular.module('<%= slugifiedModuleName %>')
-        .controller('<%= classifiedControllerName %>Controller', <%= classifiedControllerName %>
-            Controller);
+        .controller('<%= classifiedControllerName %>Controller', <%= classifiedControllerName %>Controller);
 
 
     /* CONTROLLER FUNCTION */
-    function <%= classifiedControllerName %>
-    Controller() {
+    function <%= classifiedControllerName %>Controller() {
             /* jshint validthis: true */
             var vm = this;
 
             /* PROPERTY & METHOD DEFINITIONS */
             //vm.foo = 'bar';
-            vm.initialize = initialize;
 
             /* INITIALIZATION */
+            vm.initialize = initialize;
             vm.initialize();
 
 
