@@ -1,9 +1,10 @@
 # generator-djangular-gift
+---
 
 Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
 [University of South Florida](http://www.usf.edu/).
 
-*[This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).*
+### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).
 
 ---
 
@@ -89,13 +90,15 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 ``` shell
 # Node Package Manager to install Yeoman Scaffolding tool
 @host $ sudo npm install -g yo generator-djangular-gift
-# Run the generator inside the directory where you want the project
-@host $ yo djangular-gift
 # Ansible's Galaxy to download pre-defined provisioning roles
 @host $ ansible-galaxy install -r provisioning/requirements.yml
 ```
 
-When asked for the ansible-vault key, enter `vagrant`. This will allow provisioning.
+Navigate inside the directory where you want to create your project...
+``` shell
+# Run the Djangular-Gift Yeoman generator
+@host $ yo djangular-gift
+```
 
 Now, launch the VM...
 ``` shell
@@ -103,9 +106,11 @@ Now, launch the VM...
 @host $ vagrant up
 ```
 
-Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your password after several minutes. This portion may take a long time on slower machines.
+Vagrant will now start the virtual machine and begin provisioning it. You will likely be asked to enter your user password after several minutes.
 
-Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt.
+You will also have to enter the ansible password. When asked for the 'vault password', enter `vagrant`.
+
+Ansible will then install several package managers (nodejs, npm, bower, & pip) which we will use to install all of our application's dependencies. Once it is finished, you will be back at the command line prompt. This portion may take a long time on slower machines.
 
 ---
 
@@ -173,13 +178,15 @@ Now to install Python dependencies and migrate the initial models.
 
 ## Set Up Google Authentication
 
-This build is optimized to use Google authentication. So, you will need to use a Google account to manage your app. To do this, log in to [Google Developers Console](https://console.developers.google.com/project).Once logged in, click 'Create Project', and then decide on a name/ID.
+This build is optimized to use Google authentication. So, you will need to use a Google account to manage your app. To do this, log in to [Google Developers Console](https://console.developers.google.com/project). Once logged in, click 'Create Project', and then decide on a name/ID.
 
 To manage your app in the [Developers Console](https://console.developers.google.com/project), make sure your project is selected. Then, choose the API manager on the left-hand panel. Then click 'Credentials'.
 
-Click the 'Create Credentials' button. Enter whatever name you wish for your credentials. Then, add two addresses to the 'Authorized Javascript origins'... `http://localhost:9000` and `http://localhost:9001`. Then, under 'Authorized redirect URLs' add the following two addresses `http://localhost:9000/accounts/google/login/callback/` and `http://localhost:9000/accounts/google/login/callback`.
+Click the 'Create Credentials' button. Enter whatever name you wish for your credentials. Then, add two addresses to the 'Authorized Javascript origins'... `http://localhost:9000` and `http://localhost:9001`.
 
-Then, head to the OAuth consent screen tab and fill in whatever details you want.
+Then, under 'Authorized redirect URLs' add the following two addresses `http://localhost:9000/accounts/google/login/callback/` and `http://localhost:9000/accounts/google/login/callback`.
+
+Finally, head to the OAuth consent screen tab and fill in whatever details you want.
 
 ---
 
