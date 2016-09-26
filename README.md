@@ -128,8 +128,9 @@ Now that the machine is operating, time to connect and configure. The next comma
 
 Next, install your server and client-side dependencies with npm and bower.
 ``` shell
-# Install server-side dependencies on vm with npm (include bower dependencies)
+# Install server-side dependencies on vm with npm and bower
 @dev0 $ npm install
+@dev0 $ bower install
 ```
 
 ---
@@ -148,12 +149,8 @@ Time to set up the PostgreSQL server. You will temporarily switch into the 'post
 
 Now you are inside the postgres shell. Lets create our apps credentials and grant it privileges.
 ``` sql
-# Create new credentials
-@psql $ CREATE ROLE vagrant WITH LOGIN PASSWORD 'vagrant';
-# Give new user 'vagrant' all priveleges on the development db
-@psql $ GRANT ALL PRIVILEGES ON DATABASE dev_db TO vagrant;
-# Change create of 'dev_db' to 'vagrant'
-@psql $ ALTER USER vagrant CREATEDB;
+# Create new credentials, give privileges to user.
+@psql $ CREATE ROLE vagrant WITH LOGIN PASSWORD 'vagrant'; GRANT ALL PRIVILEGES ON DATABASE dev_db TO vagrant; ALTER USER vagrant CREATEDB;
 # Quit the PostgreSQL shell and then exit out of postgres
 @psql $ \q
 @postgres $ exit
