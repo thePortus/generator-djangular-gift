@@ -8,11 +8,10 @@ var util = require('../util'),
     uuid = require('node-uuid'),
     _ = require('lodash');
 
-var MeanGenerator = yeoman.extend({
+module.exports = yeoman.extend({
     init: function() {
         this.secretKey = uuid.v4();
-        this.log(this.yeoman);
-        this.log(chalk.magenta('You\'re using the official USF-Gift Djangular Generator.'));
+        this.log(chalk.magenta('You\'re using the official USF-Gift Djangular Generator!'));
     },
     askForApplicationDetails: function() {
         var done = this.async();
@@ -53,5 +52,3 @@ var MeanGenerator = yeoman.extend({
         }.bind(this));
     }
 });
-
-module.exports = MeanGenerator;
