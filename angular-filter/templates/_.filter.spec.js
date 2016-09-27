@@ -1,3 +1,5 @@
+(function() {
+
 'use strict';
 
 (function() {
@@ -8,16 +10,20 @@
 
         beforeEach(module(ApplicationConfiguration.name));
 
-        beforeEach(inject(function(_ <%= camelizedName %>
+        beforeEach(inject(<%= camelizedName %>FilterInject));
+
+        function <%= camelizedName %>FilterInject(_ <%= camelizedName %>
             Filter_) {
             <%= camelizedName %>
             Filter = _ <%= camelizedName %>
             Filter_;
-        }));
 
-        it('should be testable', inject(function() {
-            expect(<%= camelizedName %>
-                Filter).toBeDefined();
-        }));
+            it('should be testable', inject(function() {
+                expect(<%= camelizedName %>Filter).toBeDefined();
+            }));
+
+        }
     });
 }());
+
+})();

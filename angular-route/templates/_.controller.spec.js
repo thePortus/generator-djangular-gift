@@ -1,3 +1,5 @@
+(function() {
+
 'use strict';
 
 (function() {
@@ -17,19 +19,23 @@
             Controller = $controller('<%= classifiedControllerName %>Controller', {
                 $scope: scope
             });
+
+            describe('scope', function() {
+                it('should be usable', function() {
+                    expect(scope).toBeDefined();
+                });
+            });
+
+            describe('controller', function() {
+                it('should be usable', function() {
+                    expect(<%= classifiedControllerName %>
+                        Controller).toBeDefined();
+                });
+            });
+
         }));
 
-        describe('scope', function() {
-            it('should be usable', function() {
-                expect(scope).toBeDefined();
-            });
-        });
-
-        describe('controller', function() {
-            it('should be usable', function() {
-                expect(<%= classifiedControllerName %>
-                    Controller).toBeDefined();
-            });
-        });
     });
 }());
+
+})();
