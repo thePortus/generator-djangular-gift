@@ -30,8 +30,9 @@ module.exports = yeoman.extend({
     },
 
     copyApplicationFolder: function() {
-        var blacklist = ['contributing.md', 'README.md', 'package.json', 'bower.js', 'Vagrantfile'];
+        var blacklist = ['.gitignore', 'contributing.md', 'README.md', 'package.json', 'bower.js', 'Vagrantfile'];
         var rendered = {
+            '_.gitignore': '.gitignore',
             'provisioning/group_vars/dev': 'provisioning/group_vars/dev',
             'public/config.js': 'public/config.js',
             '_README.md': 'README.md',
