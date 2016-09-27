@@ -2,13 +2,13 @@
 
 var util = require('../util'),
     path = require('path'),
-    yeoman = require('yeoman-generator'),
+    yeoman = require('yeoman-generator').Base,
     chalk = require('chalk'),
     format = require('string-format'),
     uuid = require('node-uuid'),
     _ = require('lodash');
 
-var MeanGenerator = yeoman.Base.extend({
+var MeanGenerator = yeoman.extend({
     init: function() {
         this.secretKey = uuid.v4();
         this.log(this.yeoman);
