@@ -1,3 +1,5 @@
+(function() {
+
 'use strict';
 
 (function() {
@@ -6,7 +8,9 @@
 
         var scope, $elt;
 
-        beforeEach(inject(function($rootScope, _$compile_) {
+        beforeEach(inject(<%= slugifiedName %>DirectiveInject));
+
+        function <%= slugifiedName %>DirectiveInject($rootScope, _$compile_) {
             scope = $rootScope.$new();
             _.extend(scope, {
                 // TODO: populate scope as needed
@@ -18,11 +22,16 @@
             <% } %>
             $elt = _$compile_(element)(scope);
             scope.$digest(); // call watchers
-        }));
 
-        it('should be usable', function() {
-            expect($elt).toExist();
-        });
+            it('should be usable', <%= slugifiedName %>DirectiveTestable);
+
+            function() <%= slugifiedName %>DirectiveTestable {
+                expect($elt).toExist();
+            }
+
+        }
 
     });
+})();
+
 })();

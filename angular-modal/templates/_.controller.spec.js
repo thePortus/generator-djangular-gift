@@ -1,4 +1,6 @@
-'use strict';
+(function() {
+
+    'use strict';
 
 (function() {
     describe('<%= classifiedName %> Modal Controller Tests', function() {
@@ -16,25 +18,28 @@
                 $scope: scope,
                 $modalInstance: fakeModal
             });
+
+            describe('scope', function() {
+                it('should be usable', function() {
+                    expect(scope).toBeDefined();
+                });
+            });
+
+            describe('modal', function() {
+                it('should be usable', function() {
+                    expect(fakeModal).toBeDefined();
+                });
+            });
+
+            describe('controller', function() {
+                it('should be usable', function() {
+                    expect(ctrl).toBeDefined();
+                });
+            });
+
         }));
-
-        describe('scope', function() {
-            it('should be usable', function() {
-                expect(scope).toBeDefined();
-            });
-        });
-
-        describe('modal', function() {
-            it('should be usable', function() {
-                expect(fakeModal).toBeDefined();
-            });
-        });
-
-        describe('controller', function() {
-            it('should be usable', function() {
-                expect(ctrl).toBeDefined();
-            });
-        });
 
     });
 }());
+
+})();

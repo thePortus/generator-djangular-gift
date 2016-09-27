@@ -1,3 +1,5 @@
+(function() {
+
 'use strict';
 
 (function() {
@@ -7,15 +9,14 @@
 
         beforeEach(module(ApplicationConfiguration.name));
 
-        beforeEach(inject(function(_ <%= camelizedName %>
-            _) {
-            <%= camelizedName %> = _ <%= camelizedName %>
-            _;
-        }));
-
-        it('should be usable', inject(function() {
-            // The test logic
-            expect(<%= camelizedName %>).toBeDefined();
+        beforeEach(inject(function(_ <%= camelizedName %>) {
+            <%= camelizedName %> = _<%= camelizedName %>_;
+            it('should be usable', inject(function() {
+                // The test logic
+                expect(<%= camelizedName %>).toBeDefined();
+            }));
         }));
     });
 }());
+
+})();
