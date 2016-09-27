@@ -8,7 +8,7 @@ var util = require('../util'),
     uuid = require('node-uuid'),
     _ = require('lodash');
 
-var MeanGenerator = yeoman.generators.Base.extend({
+var MeanGenerator = yeoman.Base.extend({
     init: function() {
         this.secretKey = uuid.v4();
         this.log(this.yeoman);
