@@ -3,7 +3,7 @@
   "version": "0.1.10",
   "description": "Yeoman Generator a DjangularJS project with material design",
   "main": "app/index.js",
-  "repository": "thePortus/generator-djangular-gift",
+  "repository": "thePortus/generator-djangular-gift-app",
   "scripts": {
     "test": "mocha"
   },
