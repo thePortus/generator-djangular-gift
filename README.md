@@ -90,14 +90,17 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 ``` shell
 # Node Package Manager to install Yeoman Scaffolding tool
 @host $ sudo npm install -g yo generator-djangular-gift
-# Ansible's Galaxy to download pre-defined provisioning roles
-@host $ ansible-galaxy install -r provisioning/requirements.yml
 ```
 
 Navigate inside the directory where you want to create your project...
 ``` shell
 # Run the Djangular-Gift Yeoman generator
 @host $ yo djangular-gift
+```
+
+After you answer the prompt(s), the generator will create your starting files. Once done, run the following command to install the required ansible-galaxy roles.
+``` shell
+@host $ ansible-galaxy install -r provisioning/requirements.yml
 ```
 
 Now, launch the VM...
