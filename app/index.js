@@ -2,16 +2,17 @@
 
 var util = require('../util'),
     path = require('path'),
-    yeoman = require('yeoman-generator').Base,
+    yeoman = require('yeoman-generator'),
     chalk = require('chalk'),
     format = require('string-format'),
     uuid = require('node-uuid'),
     _ = require('lodash');
 
-module.exports = yeoman.extend({
+var MeanGenerator = yeoman.generators.Base.extend({
     init: function() {
         this.secretKey = uuid.v4();
-        this.log(chalk.magenta('You\'re using the official USF-Gift Djangular Generator!'));
+        this.log(this.yeoman);
+        this.log(chalk.magenta('You\'re using the official DjangularJS generator.'));
     },
     askForApplicationDetails: function() {
         var done = this.async();
@@ -30,26 +31,29 @@ module.exports = yeoman.extend({
     },
 
     copyApplicationFolder: function() {
-        var blacklist = ['.gitignore', 'contributing.md', 'README.md', 'package.json', 'bower.js', 'Vagrantfile'];
+        var blacklist = ['contributing.md', 'README.md', 'package.json', 'bower.js', 'Vagrantfile', '.gitignore'];
         var rendered = {
-            '_.gitignore': '.gitignore',
-            'provisioning/group_vars/dev': 'provisioning/group_vars/dev',
-            'public/config.js': 'public/config.js',
+            'provisioning/group_vars/dev':  'provisioning/group_vars/dev',
+            'public/config.js':  'public/config.js',
             '_README.md': 'README.md',
             '_bower.json': 'bower.json',
             '_package.json': 'package.json',
-            '_Vagrantfile': 'Vagrantfile'
+            '_Vagrantfile': 'Vagrantfile',
+            '_.gitignore': '.gitignore'
         };
-        util.readdirrecSync(this.sourceRoot()).forEach(function(file) {
-            var relativePath = file.replace(this.sourceRoot() + '/', '');
-            if (_.contains(blacklist, relativePath)) {
+        util.readdirrecSync(this.sourceRoot()).forEach(function (file) {
+            var relativePath = file.replace(this.sourceRoot()+'/','');
+            if (_.contains(blacklist, relativePath)){
                 return;
             }
-            if (rendered[relativePath]) {
+            if (rendered[relativePath]){
                 this.template(relativePath, rendered[relativePath]);
-            } else {
+            }
+            else {
                 this.bulkCopy(relativePath, relativePath);
             }
         }.bind(this));
     }
 });
+
+module.exports = MeanGenerator;
