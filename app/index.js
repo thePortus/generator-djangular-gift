@@ -2,13 +2,13 @@
 
 var util = require('../util'),
     path = require('path'),
-    yeoman = require('yeoman-generator').Base,
+    yeoman = require('yeoman-generator'),
     chalk = require('chalk'),
     format = require('string-format'),
     uuid = require('node-uuid'),
     _ = require('lodash');
 
-module.exports = yeoman.extend({
+module.exports = yeoman.generators.Base.extend({
     init: function() {
         this.secretKey = uuid.v4();
         this.log(chalk.magenta('You\'re using the official USF-Gift Djangular Generator!'));
