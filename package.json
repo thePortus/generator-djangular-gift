@@ -1,7 +1,7 @@
 {
   "name": "generator-djangular-gift",
-  "version": "0.1.17",
-  "description": "Yeoman Generator a DjangularJS project with Material Design",
+  "version": "0.2.0",
+  "description": "Yeoman DjangularJS Generator with Material Design",
   "main": "app/index.js",
   "repository": "thePortus/generator-djangular-gift-app",
   "scripts": {

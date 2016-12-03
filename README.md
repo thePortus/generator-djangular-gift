@@ -4,7 +4,7 @@
 Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
 [University of South Florida](http://www.usf.edu/).
 
-### [This project is possible thanks to generous funding provided by the Patel Center for Global Sustainability](http://www.usf.edu/pcgs/).
+### [This project is possible thanks to generous funding provided by the Patel College for Global Sustainability](http://www.usf.edu/pcgs/).
 
 ---
 
@@ -32,6 +32,8 @@ GIFT (Global Interdisciplinary Food Technologies) Knowledge Repository is a data
 * Diane Wallman, Project Parter
 * George Philippidis, Project Partner
 * Qiong Zhang, Project Partner
+
+### [This project is possible thanks to generous funding provided by the Patel College for Global Sustainability](http://www.usf.edu/pcgs/).
 
 ---
 
@@ -296,6 +298,10 @@ This project is indebted to [Nicolas Panel](https://github.com/nicolaspanel), wh
     * Grunt
     * Karma
     * Protractor
+
+---
+
+### [This project is possible thanks to generous funding provided by the Patel College for Global Sustainability](http://www.usf.edu/pcgs/).
 
 ---
 
