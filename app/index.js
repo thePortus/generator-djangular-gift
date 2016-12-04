@@ -11,11 +11,18 @@ var util = require('../util'),
 module.exports = yeoman.generators.Base.extend({
     init: function() {
         this.secretKey = uuid.v4();
-        this.log(this.yeoman);
-        this.log(chalk.magenta('You\'re using the official USF-GIFT generator.'));
-        this.log(chalk.magenta('Optimized for the Global Interdisciplinary Food Technologies Knowledge Repository'));
-        this.log(chalk.magenta('Hosted at the University of South Florida'));
-        this.log(chalk.magenta('Funding for the GIFT project generously provided by the Patel College for Global Sustainability.'));
+        this.log(chalk.green('/=============================================================================\\'));
+        this.log(chalk.magenta('|                       You\'re using the USF-GIFT generator                   |'));
+        this.log(chalk.green('|=============================================================================|'));
+        this.log(chalk.magenta('|                                                                             |'));
+        this.log(chalk.magenta('|                               Optimized for the                             |'));
+        this.log(chalk.white('|       Global Interdisciplinary Food Technologies Knowledge Repository       |'));
+        this.log(chalk.magenta('|                   Hosted at the University of South Florida                 |'));
+        this.log(chalk.magenta('|             Funding for the GIFT project generously provided by             |'));
+        this.log(chalk.magenta('|                                                                             |'));
+        this.log(chalk.white('|                  The Patel College for Global Sustainability                |'));
+        this.log(chalk.magenta('|                                                                             |'));
+        this.log(chalk.green('\\=============================================================================/'));
     },
     askForApplicationDetails: function() {
         var done = this.async();

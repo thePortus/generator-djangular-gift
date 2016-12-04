@@ -169,11 +169,11 @@ Now you are inside the postgres shell. Lets create our apps credentials and gran
 Now to install Python dependencies and migrate the initial models.
 ``` shell
 # Use pip to read and d/l project module dependencies
-@dev0 $ pip install -r requirements/dev.txt
+@dev0 $ sudo pip3 install -r requirements/dev.txt
 # Migrate over the default models (auth, etc...)
-@dev0 $ python manage.py migrate
+@dev0 $ python3 manage.py migrate
 # Create a super admin account, follow the on-screen inscriptions
-@dev0 $ python manage.py createsuperuser
+@dev0 $ python3 manage.py createsuperuser
 ```
 
 ---
