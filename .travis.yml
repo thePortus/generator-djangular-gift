@@ -13,9 +13,6 @@ env:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-djangular-gift' ]; then cd .. && eval "mv $currentfolder generator-djangular-gift" && cd generator-djangular-gift; fi
-# run coveralls after testing complete
-after_success:
-  coveralls
 # never notify
 notifications:
   on_success: never
