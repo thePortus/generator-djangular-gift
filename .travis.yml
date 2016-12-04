@@ -1,3 +1,4 @@
+# setting nodejs envs to ttest
 language: node_js
 node_js:
   - "0.10"
@@ -6,8 +7,16 @@ node_js:
   - "iojs-1"
   - "iojs-2"
   - "4"
+# setting environment variables
+env:
+  - PACKAGE_VERSION=0.2.0
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-djangular-gift' ]; then cd .. && eval "mv $currentfolder generator-djangular-gift" && cd generator-djangular-gift; fi
+# run coveralls after testing complete
 after_success:
   coveralls
+# never notify
+notifications:
+  on_success: never
+  on_failure: never
