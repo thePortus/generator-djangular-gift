@@ -12,6 +12,14 @@ Global Interdisciplinary Food Technologies (GIFT) Knowledge Repository,
 
 ---
 
+## Build Status
+
+Master: [![Build Status](https://travis-ci.org/thePortus/generator-djangular-gift.svg?branch=master)](https://travis-ci.org/thePortus/generator-djangular-gift)
+
+Development: [![Build Status](https://travis-ci.org/thePortus/generator-djangular-gift.svg?branch=develop)](https://travis-ci.org/thePortus/generator-djangular-gift)
+
+---
+
 Scaffolding based on the [DjangularJS Project](https://github.com/nicolaspanel/djangularjs) and the [DjangularJS Generator](https://github.com/nicolaspanel/generator-djangularjs).
 
 ---
